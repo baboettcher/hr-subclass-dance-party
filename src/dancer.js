@@ -1,22 +1,38 @@
 // Creates and returns a new dancer object that can step
-var MakeDancer = function(top, left, timeBetweenSteps) {
+var MakeDancer = function(top, left, timeBetweenSteps, color) {
 
   //var dancer = {};
 
   // use jQuery to create an HTML <span> tag
   this.$node = $('<span class="dancer"></span>');
   this.timeBetweenSteps = timeBetweenSteps;
+  //this.color = color;
 
   //every instantiation calls step and setPosition
 
   this.step();// problem!
   this.setPosition(top, left);
+  this.setColor(color);
+
 };
 
 
+
+
+MakeDancer.prototype.setColor = function(color) {
+  color = color || "yellow"; // default is yellow
+
+  var styleSettings = {
+    'border':'10px solid ' + color,
+  };
+
+  this.$node.css(styleSettings);
+};
+
+
+
 MakeDancer.prototype.step = function() {
-  // the basic dancer doesn't do anything interesting at all on each step,
-  // it just schedules the next step
+  // the basic dancer doesn't do anything interesting at all on each step, it just schedules the next step
 
   // bind it to this method in order to preserve
   setTimeout(this.step.bind(this), this.timeBetweenSteps);
@@ -30,8 +46,9 @@ MakeDancer.prototype.setPosition = function(top, left) {
   //
   var styleSettings = {
     top: top,
-    left: left
+    left: left,
   };
+
   this.$node.css(styleSettings);
 };
 
