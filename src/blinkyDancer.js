@@ -43,7 +43,7 @@ var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
   };
 
 
-
+  return new blinkyDancer(top, left, timeBetweenSteps);
 
 };
 
