@@ -33,33 +33,96 @@ makeStarTrekDancer.prototype.constructor = makeStarTrekDancer;
 
 makeStarTrekDancer.prototype.step = function() {
   // call the old version of step at the beginning of any call to this new version of step
-  //makeDancer.prototype.step.call(this);
+
+  makeDancer.prototype.step.call(this);
+
   // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
-  //this.$node.toggle();
+
+  this.$node.toggle();
 };
+
+
+
 
 makeStarTrekDancer.prototype.lineUp = function(whichNode) {
   this.$node = $(whichNode);
+
   for (var i=0; i < window.dancers.length; i++){
 
     // vertical distance from the top of the window
-    var distance = 500 - parseInt(window.dancers[i].css('top'));
+    // 300 is arbirtary "line up place"
+    var distance = 300 - parseInt(window.dancers[i].css('top'));
 
-    // horizon line is 700
     window.dancers[i].css('transform', 'translateY(' + distance + 'px)');
     window.dancers[i].css('-webkit-transform', 'translateY(' + distance + 'px)');
   }
 
 };
 
+
+/*
+  console.log("item 0 BEFORE", window.dancers[0].offsetHeight);
+  console.log("item 0 BEFORE", window.dancers[0].offsetLeft);
+  console.log("item 0 BEFORE", window.dancers[0].offsetTop);
+  console.log("item 0 BEFORE", window.dancers[0].offsetWidth);
+
+  console.log("item 0 BEFORE", window.dancers[0]);
+  console.log("item 0 BEFORE", Object.keys(window.dancers[0][0]));
+
+
+  //console.log("item 0 AFTER", window.dancers[0]);
+  // offsetHeight
+  // offsetLeft
+  // offsetTop
+  // offsetWidth
+
+  // scrollHeight
+  // scrollLeft
+  // scrollTop
+  // scrollWidth
+*/
+
+
+
+makeStarTrekDancer.prototype.doAJig = function(whichNode) {
+
+  console.log("JIG!!")
+
+  this.$node = $(whichNode);
+  for (var i=0; i < window.dancers.length; i++){
+
+
+    // how would you get the size? save to variabe?
+    // SCALE
+    window.dancers[i].css('transform', 'scale(2)');
+    window.dancers[i].css('transform', 'scale(2)');
+
+
+   // $.cleanData(this.$node);
+
+    // nned to disable the step!
+    //
+    //window.dancers[i].css('-webkit-transform', 'scale(2)');
+    //window.dancers[i].css('-webkit-transform', 'rotate(1080deg)');
+
+
+
+    //window.dancers[i].css('transform', 'scale(2)');
+    //window.dancers[i].css('-webkit-transform', 'scale(2)');
+  }
+
+};
+
+
 makeStarTrekDancer.prototype.sayHello = function(node) {
+  console.log("SAY HELLO")
 
   var targetNode = this.findClosest(node);
   //Finding closest node to the node you clicked on
 
-  $targetNode.
+  //$targetNode.
 
   //Creating a monkey node off window
   this.$node = $('<span class="monkeyDancer"><img src="img/monkey.png" height="200" width="200" ></span>');
@@ -81,6 +144,7 @@ makeStarTrekDancer.prototype.findClosest = function(node){
   var closestDist = Number.MAX_VALUE;
   var closestNode = null;
 
+  // iterate over array of dancers
   for(var i = 0; i < window.dancers.length; i++){
     var xdist = parseInt(window.dancers[i].css('left')) - parseInt($(node).css('left'));
     var ydist = parseInt(window.dancers[i].css('top')) - parseInt($(node).css('top'));
@@ -91,6 +155,6 @@ makeStarTrekDancer.prototype.findClosest = function(node){
       closestNode = window.dancers[i];
     }
   }
-  console.log(closestNode);
+  console.log("NEAREST NEIGHBOR", closestNode);
   return closestNode;
 };
