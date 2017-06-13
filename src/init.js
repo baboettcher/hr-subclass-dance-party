@@ -1,5 +1,6 @@
 $(document).ready(function() {
   window.dancers = [];
+  window.monkeys = [];
 
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -44,19 +45,6 @@ $(document).ready(function() {
 
     dancerMakerFunction.prototype.lineUp('.starTrekDancer');
   });
-
-
-    // click handler to invoke function
-  $('.doAJig').on('click', function(event){
-    // getting a string
-    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
-
-    // we watn invoke the method on DMF
-    var dancerMakerFunction = window[dancerMakerFunctionName];
-
-    dancerMakerFunction.prototype.doAJig('.starTrekDancer');
-  });
-
 
 });
 
