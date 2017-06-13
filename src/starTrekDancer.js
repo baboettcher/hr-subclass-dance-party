@@ -99,6 +99,7 @@ makeStarTrekDancer.prototype.attack = function(clickedNode) {
     window.CROWNEDKING = true;
 
     // the only child is an image, so
+    //
 
     //  <span class="starTrekDancer andorian" onclick="makeStarTrekDancer.prototype.attack(this)">
     //    <img src="img/andorian_white.png" width="50" >      eq(0)
